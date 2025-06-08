@@ -2,13 +2,21 @@ package dev.chrisgaunt
 
 import react.*
 import react.dom.html.ReactHTML.div
-import react.dom.html.ReactHTML.footer
 import emotion.react.css
 import web.cssom.*
 import csstype.*
 import dev.chrisgaunt.components.*
+import dev.chrisgaunt.pages.*
+
+// Enum to represent different pages
+enum class Page {
+    HOME, PROJECTS
+}
 
 val App = FC<Props> {
+    // State to track the current page
+    val (currentPage, setCurrentPage) = useState(Page.HOME)
+
     div {
         css {
             width = 100.pct
@@ -17,44 +25,68 @@ val App = FC<Props> {
             color = rgb(224, 224, 224)
         }
 
-        // Header with name and title
-        Header {}
 
-        // Content container
+        // Navigation bar (consistent across all pages)
         div {
             css {
-                maxWidth = 1200.px
-                margin = "0 auto".unsafeCast<Margin>()
-                padding = 20.px
+                backgroundColor = rgb(30, 30, 35)
+                padding = Padding(10.px, 0.px)
+                borderBottom = Border(1.px, LineStyle.solid, rgb(50, 50, 60))
+                marginBottom = 20.px
             }
 
-            // Contact information
-            ContactInfo {}
-
-            // Technologies/Skills
-            Technologies {}
-
-            // Work Experience
-            Experience {}
-
-            // Side Projects
-            Projects {}
-
-            // Education
-            Education {}
-
-            // Footer
-            footer {
+            div {
                 css {
-                    textAlign = TextAlign.center
-                    marginTop = 30.px
-                    paddingTop = 20.px
-                    borderTop = Border(1.px, LineStyle.solid, rgb(70, 70, 70))
-                    fontSize = 0.8.rem
-                    color = rgb(170, 170, 170)
+                    display = Display.flex
+                    justifyContent = JustifyContent.center
+                    listStyleType = "none".unsafeCast<ListStyleType>()
+                    margin = 0.px
+                    padding = 0.px
                 }
-                +"© ${js("new Date().getFullYear()")} Christopher Gaunt"
+
+                // Home link
+                div {
+                    css {
+                        margin = Margin(0.px, 15.px)
+                        cursor = Cursor.pointer
+                        color = if (currentPage == Page.HOME) rgb(220, 230, 255) else rgb(180, 200, 255)
+                        textDecoration = "none".unsafeCast<TextDecoration>()
+                        fontSize = 1.1.rem
+                        transition = "color 0.3s ease".unsafeCast<Transition>()
+                        hover {
+                            color = rgb(220, 230, 255)
+                        }
+                    }
+                    onClick = { setCurrentPage(Page.HOME) }
+                    +"Home"
+                }
+
+                // Side Projects link
+                div {
+                    css {
+                        margin = Margin(0.px, 15.px)
+                        cursor = Cursor.pointer
+                        color = if (currentPage == Page.PROJECTS) rgb(220, 230, 255) else rgb(180, 200, 255)
+                        textDecoration = "none".unsafeCast<TextDecoration>()
+                        fontSize = 1.1.rem
+                        transition = "color 0.3s ease".unsafeCast<Transition>()
+                        hover {
+                            color = rgb(220, 230, 255)
+                        }
+                    }
+                    onClick = { setCurrentPage(Page.PROJECTS) }
+                    +"Side Projects"
+                }
             }
+        }
+
+        // Header with name and title (consistent across all pages)
+        Header {}
+
+        // Render the current page
+        when (currentPage) {
+            Page.HOME -> HomePage {}
+            Page.PROJECTS -> ProjectsPage {}
         }
     }
 }

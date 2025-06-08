@@ -3,6 +3,7 @@ package dev.chrisgaunt.components
 import react.*
 import react.dom.html.ReactHTML.p
 import react.dom.html.ReactHTML.a
+import react.dom.html.ReactHTML.img
 import emotion.react.css
 import web.cssom.*
 import csstype.*
@@ -15,6 +16,18 @@ val ContactInfo = FC<Props> {
             css {
                 margin = 5.px
                 fontSize = 1.rem
+                display = Display.flex
+                alignItems = AlignItems.center
+                gap = 8.px
+            }
+            img {
+                css {
+                    width = 20.px
+                    height = 20.px
+                    filter = "brightness(0) invert(1)".unsafeCast<Filter>() // Make icon white
+                }
+                src = "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/icons/telephone.svg"
+                alt = "Phone"
             }
             +"480.628.0260"
         }
@@ -23,6 +36,18 @@ val ContactInfo = FC<Props> {
             css {
                 margin = 5.px
                 fontSize = 1.rem
+                display = Display.flex
+                alignItems = AlignItems.center
+                gap = 8.px
+            }
+            img {
+                css {
+                    width = 20.px
+                    height = 20.px
+                    filter = "brightness(0) invert(1)".unsafeCast<Filter>() // Make icon white
+                }
+                src = "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/icons/envelope.svg"
+                alt = "Email"
             }
             a {
                 href = "mailto:chris.tgaunt@gmail.com"
@@ -42,6 +67,18 @@ val ContactInfo = FC<Props> {
             css {
                 margin = 5.px
                 fontSize = 1.rem
+                display = Display.flex
+                alignItems = AlignItems.center
+                gap = 8.px
+            }
+            img {
+                css {
+                    width = 20.px
+                    height = 20.px
+                    filter = "brightness(0) invert(1)".unsafeCast<Filter>() // Make icon white
+                }
+                src = "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/icons/linkedin.svg"
+                alt = "LinkedIn"
             }
             a {
                 href = "https://www.linkedin.com/in/chris-gaunt-950133b1"
@@ -61,6 +98,18 @@ val ContactInfo = FC<Props> {
             css {
                 margin = 5.px
                 fontSize = 1.rem
+                display = Display.flex
+                alignItems = AlignItems.center
+                gap = 8.px
+            }
+            img {
+                css {
+                    width = 20.px
+                    height = 20.px
+                    filter = "brightness(0) invert(1)".unsafeCast<Filter>() // Make icon white
+                }
+                src = "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/icons/geo-alt.svg"
+                alt = "Location"
             }
             +"South Shore, Massachusetts"
         }
