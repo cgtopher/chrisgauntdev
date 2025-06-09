@@ -6,7 +6,9 @@ import emotion.react.css
 import web.cssom.*
 import csstype.*
 import dev.chrisgaunt.components.*
+import dev.chrisgaunt.components.subcomponents.*
 import dev.chrisgaunt.pages.*
+import dev.chrisgaunt.theme.ThemeConfig
 
 // Enum to represent different pages
 enum class Page {
@@ -17,67 +19,39 @@ val App = FC<Props> {
     // State to track the current page
     val (currentPage, setCurrentPage) = useState(Page.HOME)
 
+    // Apply theme to document
+    useEffect {
+        ThemeConfig.applyToDocument()
+    }
+
     div {
         css {
             width = 100.pct
             fontFamily = "Arial, sans-serif".unsafeCast<FontFamily>()
-            backgroundColor = rgb(18, 18, 18)
-            color = rgb(224, 224, 224)
+            backgroundColor = Color("var(--background-color)")
+            color = Color("var(--text-color)")
         }
 
-
         // Navigation bar (consistent across all pages)
-        div {
-            css {
-                backgroundColor = rgb(30, 30, 35)
-                padding = Padding(10.px, 0.px)
-                borderBottom = Border(1.px, LineStyle.solid, rgb(50, 50, 60))
-                marginBottom = 20.px
+        NavContainer {
+            // Theme picker (leftmost)
+            ThemePickerContainer {}
+
+            // Navigation links (center)
+            NavLink {
+                isActive = currentPage == Page.HOME
+                onClick = { setCurrentPage(Page.HOME) }
+                +"Home"
             }
 
-            div {
-                css {
-                    display = Display.flex
-                    justifyContent = JustifyContent.center
-                    listStyleType = "none".unsafeCast<ListStyleType>()
-                    margin = 0.px
-                    padding = 0.px
-                }
-
-                // Home link
-                div {
-                    css {
-                        margin = Margin(0.px, 15.px)
-                        cursor = Cursor.pointer
-                        color = if (currentPage == Page.HOME) rgb(220, 230, 255) else rgb(180, 200, 255)
-                        textDecoration = "none".unsafeCast<TextDecoration>()
-                        fontSize = 1.1.rem
-                        transition = "color 0.3s ease".unsafeCast<Transition>()
-                        hover {
-                            color = rgb(220, 230, 255)
-                        }
-                    }
-                    onClick = { setCurrentPage(Page.HOME) }
-                    +"Home"
-                }
-
-                // Side Projects link
-                div {
-                    css {
-                        margin = Margin(0.px, 15.px)
-                        cursor = Cursor.pointer
-                        color = if (currentPage == Page.PROJECTS) rgb(220, 230, 255) else rgb(180, 200, 255)
-                        textDecoration = "none".unsafeCast<TextDecoration>()
-                        fontSize = 1.1.rem
-                        transition = "color 0.3s ease".unsafeCast<Transition>()
-                        hover {
-                            color = rgb(220, 230, 255)
-                        }
-                    }
-                    onClick = { setCurrentPage(Page.PROJECTS) }
-                    +"Side Projects"
-                }
+            NavLink {
+                isActive = currentPage == Page.PROJECTS
+                onClick = { setCurrentPage(Page.PROJECTS) }
+                +"Side Projects"
             }
+
+            // Empty div for symmetry (rightmost)
+            NavSpacer {}
         }
 
         // Header with name and title (consistent across all pages)

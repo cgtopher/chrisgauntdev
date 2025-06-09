@@ -5,6 +5,7 @@ import react.dom.html.ReactHTML.h1
 import emotion.react.css
 import web.cssom.*
 import csstype.*
+import dev.chrisgaunt.theme.ThemeConfig
 
 external interface HeaderTitleProps : Props {
     var title: String
@@ -16,14 +17,14 @@ val HeaderTitle = FC<HeaderTitleProps> { props ->
         css {
             fontSize = 3.rem
             marginBottom = 0.px
-            color = rgb(255, 255, 255)
+            color = Color("var(--header-title-color)")
             fontWeight = FontWeight.bold
         }
         props.className?.let { className ->
             // Apply additional className if provided
             asDynamic().className = className
         }
-        
+
         +props.title
     }
 }

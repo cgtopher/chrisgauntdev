@@ -5,6 +5,7 @@ import react.dom.html.ReactHTML.h2
 import emotion.react.css
 import web.cssom.*
 import csstype.*
+import dev.chrisgaunt.theme.ThemeConfig
 
 external interface HeaderSubtitleProps : Props {
     var subtitle: String
@@ -17,13 +18,13 @@ val HeaderSubtitle = FC<HeaderSubtitleProps> { props ->
             fontSize = 1.5.rem
             fontWeight = FontWeight.normal
             marginTop = 10.px
-            color = rgb(120, 150, 220)
+            color = Color("var(--header-subtitle-color)")
         }
         props.className?.let { className ->
             // Apply additional className if provided
             asDynamic().className = className
         }
-        
+
         +props.subtitle
     }
 }

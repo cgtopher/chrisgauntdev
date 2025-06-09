@@ -1,0 +1,2 @@
+- At the end of a task, always run the deployToGitHubPages gradle script
+- Abstract css blocks to subcomponents
