@@ -64,10 +64,12 @@ val Projects = FC<Props> {
         div {
             css {
                 display = Display.grid
-                gridTemplateColumns = "repeat(auto-fill, minmax(300px, 1fr))".unsafeCast<GridTemplateColumns>()
-                gap = 30.px
-                rowGap = 60.px
+                gridTemplateColumns = "repeat(auto-fill, minmax(280px, 1fr))".unsafeCast<GridTemplateColumns>()
+                gap = 20.px
+                rowGap = 40.px
                 marginTop = 20.px
+                width = 100.pct
+                boxSizing = BoxSizing.borderBox
             }
 
             // Render each project as a card
@@ -85,6 +87,9 @@ val Projects = FC<Props> {
                         zIndex = integer(1)
                         minHeight = 100.pct
                         marginBottom = 5.px
+                        width = 100.pct
+                        boxSizing = BoxSizing.borderBox
+                        overflow = Overflow.hidden
                     }
 
                     // Card header with project name and year
@@ -96,6 +101,8 @@ val Projects = FC<Props> {
                             marginBottom = 15.px
                             borderBottom = Border(1.px, LineStyle.solid, rgb(50, 50, 60))
                             paddingBottom = 10.px
+                            width = 100.pct
+                            overflow = Overflow.hidden
                         }
 
                         h3 {
@@ -103,6 +110,8 @@ val Projects = FC<Props> {
                                 margin = 0.px
                                 fontSize = 1.3.rem
                                 color = rgb(180, 200, 255)
+                                overflowWrap = OverflowWrap.breakWord
+                                wordBreak = WordBreak.breakWord
                             }
                             +project.name
                         }
@@ -112,6 +121,8 @@ val Projects = FC<Props> {
                                 margin = 0.px
                                 fontStyle = FontStyle.italic
                                 color = rgb(170, 170, 170)
+                                overflowWrap = OverflowWrap.breakWord
+                                wordBreak = WordBreak.breakWord
                             }
                             +project.year
                         }
@@ -121,6 +132,8 @@ val Projects = FC<Props> {
                     div {
                         css {
                             flexGrow = number(1.0)
+                            width = 100.pct
+                            overflow = Overflow.hidden
                         }
 
                         // Project description
@@ -130,6 +143,8 @@ val Projects = FC<Props> {
                                     lineHeight = 1.5.em
                                     marginBottom = 10.px
                                     color = rgb(200, 200, 200)
+                                    overflowWrap = OverflowWrap.breakWord
+                                    wordBreak = WordBreak.breakWord
                                 }
                                 +paragraph
                             }
@@ -143,6 +158,8 @@ val Projects = FC<Props> {
                                 marginTop = 15.px
                                 borderTop = Border(1.px, LineStyle.solid, rgb(50, 50, 60))
                                 paddingTop = 10.px
+                                width = 100.pct
+                                overflow = Overflow.hidden
                             }
                             a {
                                 href = link
@@ -150,6 +167,8 @@ val Projects = FC<Props> {
                                     color = rgb(120, 150, 220)
                                     textDecoration = "none".unsafeCast<TextDecoration>()
                                     transition = "color 0.3s ease".unsafeCast<Transition>()
+                                    overflowWrap = OverflowWrap.breakWord
+                                    wordBreak = WordBreak.breakWord
                                     hover {
                                         color = rgb(150, 180, 255)
                                     }
